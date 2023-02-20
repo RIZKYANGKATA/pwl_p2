@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 // Route::get('/', function () {
 //     echo "Selamat Datang";
 // });
@@ -44,13 +44,13 @@ Route::get('/', function () {
 
 Route::get('/', function () {
     return "Halaman Home <br>
-            Menampilkan halaman awal website";
+            Menampilkan Halaman Utama";
 });
 
 Route::prefix('category')->group(function () {
     Route::get('/', function () {
-        return 'Halaman Products <br>
-            Menampilkan daftar product ( route prefix) <br>
+        return 'Halaman Produk <br>
+            Menampilkan daftar produk ( route prefix) <br>
             <a href="https://www.educastudio.com/category/marbel-edu-games">https://www.educastudio.com/category/marbel-edu-games</a> <br>
             <a href="https://www.educastudio.com/category/marbel-and-friends-kids-games">https://www.educastudio.com/category/marbel-and-friends-kids-games</a> <br>
             <a href="https://www.educastudio.com/category/riri-story-books">https://www.educastudio.com/category/riri-story-books</a> <br>
