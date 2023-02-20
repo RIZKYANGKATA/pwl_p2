@@ -11,10 +11,10 @@ class PageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return 'Selamat Datang';
-    }
+    // public function index()
+    // {
+    //     return 'Selamat Datang';
+    // }
 
     public function about()
     {

@@ -4,17 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class WelcomeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //     return 'Selamat Datang';
-    // }
+    public function index()
+    {
+        return 'Halaman Contact Us <br>
+        Menampilkan Contact Us (route resource only) <br>
+        <a href="https://www.educastudio.com/contact-us">https://www.educastudio.com/contact-us</a> <br>
+        (Bisa Post kontak ke backend)';
+    }
 
     /**
      * Show the form for creating a new resource.
