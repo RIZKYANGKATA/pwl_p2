@@ -103,3 +103,14 @@ Route::get('/about-us', function () {
 });
 
 Route::resource('contact-us', WelcomeController::class)->only(['index']);
+
+
+Route::get('/', [DashboardController::class, 'index']);
+
+Route::get('/dashboard', [DashboardController::class, 'index']);
+
+Route::get('/profil', [ProfilController::class, 'index']);
+
+Route::get('/pengalaman-kuliah', [PengalamanKuliahController::class, 'index']);
+
+Route::get('/kendaraan', [KendaraanController::class, 'index']);
