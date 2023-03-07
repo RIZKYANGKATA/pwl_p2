@@ -114,3 +114,5 @@ Route::get('/profil', [ProfilController::class, 'index']);
 Route::get('/pengalaman-kuliah', [PengalamanKuliahController::class, 'index']);
 
 Route::get('/kendaraan', [KendaraanController::class, 'index']);
+
+Route::get('/hobi', [HobiController::class, 'index']);
