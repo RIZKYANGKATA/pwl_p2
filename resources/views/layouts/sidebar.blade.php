@@ -67,7 +67,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('profil') }}" class="nav-link">
+            <a href="{{ url('keluarga') }}" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Keluarga
