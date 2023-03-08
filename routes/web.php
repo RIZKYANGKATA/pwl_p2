@@ -119,3 +119,5 @@ Route::get('/hobi', [HobiController::class, 'index']);
 
 Route::get('/keluarga', [KeluargaController::class, 'index']);
 
+Route::get('/mata_kuliah', [MataKuliahController::class, 'index']);
+

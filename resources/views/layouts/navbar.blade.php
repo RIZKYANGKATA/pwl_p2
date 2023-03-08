@@ -5,13 +5,22 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ url('dasboard') }}" class="nav-link">Dashboard</a>
+        <a href="{{ url('dashboard') }}" class="nav-link">Dashboard</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{ url('profil') }}" class="nav-link">Profile</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{ url('pengalaman-kuliah') }}" class="nav-link">Pengalaman Kuliah</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{ url('hobi') }}" class="nav-link">Hobi</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{ url('keluarga') }}" class="nav-link">Keluarga</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{ url('mata_kuliah') }}" class="nav-link">Mata Kuliah</a>
       </li>
     </ul>
 

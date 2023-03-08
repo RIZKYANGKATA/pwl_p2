@@ -75,7 +75,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('pengalaman-kuliah') }}" class="nav-link">
+            <a href="{{ url('mata_kuliah') }}" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Mata Kuliah
