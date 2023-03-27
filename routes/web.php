@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -105,7 +107,10 @@ Route::get('/about-us', function () {
 Route::resource('contact-us', WelcomeController::class)->only(['index']);
 
 
-Route::get('/', [DashboardController::class, 'index']);
+
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('/', [DashboardController::class, 'index']);
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
@@ -121,3 +126,28 @@ Route::get('/keluarga', [KeluargaController::class, 'index']);
 
 Route::get('/mata_kuliah', [MataKuliahController::class, 'index']);
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+});
+
+// Route::get('/', [DashboardController::class, 'index']);
+
+// Route::get('/dashboard', [DashboardController::class, 'index']);
+
+// Route::get('/profil', [ProfilController::class, 'index']);
+
+// Route::get('/pengalaman-kuliah', [PengalamanKuliahController::class, 'index']);
+
+// Route::get('/kendaraan', [KendaraanController::class, 'index']);
+
+// Route::get('/hobi', [HobiController::class, 'index']);
+
+// Route::get('/keluarga', [KeluargaController::class, 'index']);
+
+// Route::get('/mata_kuliah', [MataKuliahController::class, 'index']);
+
+
+Auth::routes();
+Route::get('/logout', [LoginController::class, 'logout']);
+
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
