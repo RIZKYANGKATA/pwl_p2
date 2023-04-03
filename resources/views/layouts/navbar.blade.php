@@ -22,6 +22,9 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{ url('mata_kuliah') }}" class="nav-link">Mata Kuliah</a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{ url('mahasiswa') }}" class="nav-link">Mahasiswa</a>
+      </li>
     </ul>
 
     <!-- Right navbar links -->
