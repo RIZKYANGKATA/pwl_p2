@@ -40,7 +40,8 @@
                         <th>No</th>
                         <th>NIM</th>
                         <th>Nama</th>
-                        <th>JK</th>
+                        <th>Kelas</th>
+                        <th>Jenis Kelamin</th>
                         <th>Hp</th>
                         <th>Action</th>
                       </tr>
@@ -52,6 +53,7 @@
                             <td>{{++$i}}</td>
                             <td>{{$m->nim}}</td>
                             <td>{{$m->nama}}</td>
+                            <td>{{$m->kelas->nama_kelas}}</td>
                             <td>{{$m->jk}}</td>
                             <td>{{$m->hp}}</td>
                             <td style="display: flex">
