@@ -64,17 +64,6 @@
             </tr>
             @endforeach
         </tbody>
-        <tfoot>
-          <tr>
-            <th>No.</th>
-            <th>Kode MK</th>
-            <th>Nama Mata Kuliah</th>
-            <th>SKS</th>
-            <th>Jam</th>
-            <th>Semester</th>
-            <th>Nilai</th>
-          </tr>
-        </tfoot>
       </table>
       <a href="{{url('mahasiswa')}}" class="btn btn-default"><i class="fas fa-arrow-left pr-1"></i>Back</a>
   </div>

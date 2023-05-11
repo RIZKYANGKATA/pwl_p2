@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class MataKuliahModel extends Model
 {
     use HasFactory;
-    protected $table = 'mata_kuliah';
+    protected $table = 'matkul';
     protected $primaryKey = 'no';
     protected $keyType = 'string';
 }

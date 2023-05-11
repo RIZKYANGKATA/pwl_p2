@@ -35,23 +35,21 @@
                     <thead>
                       <tr>
                         <th>No.</th>
-                        <th>Kode Mk</th>
-                        <th>Mata Kuliah</th>
+                        <th>Nama Matkul</th>
                         <th>SKS</th>
                         <th>Jam</th>
-                        <th>Niali</th>
+                        <th>Semester</th>
 
                       </tr>
                     </thead>
                     <tbody>
                       @foreach ($mata_kuliah as $no => $mk)
                           <tr>
-                            <td>{{$mk->no}}</td>
-                            <td>{{$mk->kodemk}}</td>
-                            <td>{{$mk->matkul}}</td>
+                            <td>{{$mk->id}}</td>
+                            <td>{{$mk->nama_matkul}}</td>
                             <td>{{$mk->sks}}</td>
                             <td>{{$mk->jam}}</td>
-                            <td>{{$mk->nilai}}</td>
+                            <td>{{$mk->semester}}</td>
                           </tr>
                       @endforeach
                     </tbody>
