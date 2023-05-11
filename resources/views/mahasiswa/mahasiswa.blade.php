@@ -57,6 +57,9 @@
                             <td>{{$m->jk}}</td>
                             <td>{{$m->hp}}</td>
                             <td style="display: flex">
+                              <a href="{{ url('/mahasiswa/'. $m->id)}}" class="btn btn-sm btn-secondary mr-2">Show</a>
+                              <a href="{{ url('/mahasiswa/'. $m->id.'/nilai') }}" class="btn btn-sm btn-primary mr-2">Nilai</a>
+
                               <a href="{{ url('/mahasiswa/'. $m->id.'/edit')}}" class="btn btn-sm btn-warning mr-2">Edit</a>
 
                               <form method="POST" action="{{ url('/mahasiswa/'.$m->id)}}">

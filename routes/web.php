@@ -127,8 +127,7 @@ Route::get('/keluarga', [KeluargaController::class, 'index']);
 Route::get('/mata_kuliah', [MataKuliahController::class, 'index']);
 
 Route::resource('/mahasiswa', MahasiswaController::class)->parameter('mahasiwa', 'id');
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/mahasiswa/{id}/nilai', [MahasiswaController::class, 'nilai']);
 });
 
 // Route::get('/', [DashboardController::class, 'index']);
