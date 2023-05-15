@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ArticlesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -128,6 +129,7 @@ Route::get('/mata_kuliah', [MataKuliahController::class, 'index']);
 
 Route::resource('/mahasiswa', MahasiswaController::class)->parameter('mahasiwa', 'id');
 Route::get('/mahasiswa/{id}/nilai', [MahasiswaController::class, 'nilai']);
+Route::resource('articles', ArticlesController::class);
 });
 
 // Route::get('/', [DashboardController::class, 'index']);
