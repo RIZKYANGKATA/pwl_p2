@@ -73,12 +73,12 @@ Route::prefix('category')->group(function () {
     });
 });
 
-Route::get('/articles/{id}', function ($id) {
-    return 'Halaman News <br>
-        Menampilkan Daftar berita (route param) <br>
-        <a href="https://www.educastudio.com/news">https://www.educastudio.com/news</a> <br>
-        <a href="https://www.educastudio.com/news/educa-studio-berbagi-untuk-warga-sekitar-terdampak-covid-19">https://www.educastudio.com/news/educa-studio-berbagi-untuk-warga-sekitar-terdampak-covid-19</a>';
-});
+// Route::get('/articles/{id}', function ($id) {
+//     return 'Halaman News <br>
+//         Menampilkan Daftar berita (route param) <br>
+//         <a href="https://www.educastudio.com/news">https://www.educastudio.com/news</a> <br>
+//         <a href="https://www.educastudio.com/news/educa-studio-berbagi-untuk-warga-sekitar-terdampak-covid-19">https://www.educastudio.com/news/educa-studio-berbagi-untuk-warga-sekitar-terdampak-covid-19</a>';
+// });
 
 Route::prefix('program')->group(function () {
     Route::get('/', function () {
@@ -126,10 +126,13 @@ Route::get('/hobi', [HobiController::class, 'index']);
 Route::get('/keluarga', [KeluargaController::class, 'index']);
 
 Route::get('/mata_kuliah', [MataKuliahController::class, 'index']);
+Route::get('/articles/cetak_pdf', [ArticlesController::class, 'cetak_pdf']);
+Route::resource('articles', ArticlesController::class);
+
 
 Route::resource('/mahasiswa', MahasiswaController::class)->parameter('mahasiwa', 'id');
 Route::get('/mahasiswa/{id}/nilai', [MahasiswaController::class, 'nilai']);
-Route::resource('articles', ArticlesController::class);
+
 });
 
 // Route::get('/', [DashboardController::class, 'index']);

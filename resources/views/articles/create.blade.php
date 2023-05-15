@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.template')
 @section('content')
     <div class="container">
-        <form action="/articles" method="post" enctype="multipart/form-data">
+        <form action="{{url('articles')}}" method="post" enctype="multipart/form-data">
         @csrf
     <div class="form-group">
     <label for="title">Title: </label>

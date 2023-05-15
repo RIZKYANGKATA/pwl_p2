@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Articles;
+use Barryvdh\DomPDF\Facade\Pdf;
+//use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ArticlesController extends Controller
 {
@@ -14,7 +17,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        //
+        return view('articles.create');
     }
 
     /**
@@ -64,9 +67,10 @@ class ArticlesController extends Controller
      * @param  \App\Models\Articles  $articles
      * @return \Illuminate\Http\Response
      */
-    public function edit(Articles $articles)
+    public function edit($id)
     {
-        //
+        $articles = Articles::find($id);
+        return view('articles.edit', ['article' => $articles]);
     }
 
     /**
@@ -76,10 +80,22 @@ class ArticlesController extends Controller
      * @param  \App\Models\Articles  $articles
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Articles $articles)
+    public function update(Request $request, $id)
     {
-        //
-    }
+        $articles = Articles::find($id);
+
+        $articles->title = $request->title;
+        $articles->content = $request->content;
+
+        if($articles->featured_image && file_exists(storage_path('app/public/' . $articles->featured_image))) {
+            Storage::delete('public/' . $articles->featured_image);
+        }
+    $image_name = $request->file('image')->store('images', 'public');
+    $articles->featured_image = $image_name;
+     
+    $articles->save();
+    return 'Artikel berhasil diubah';
+}
 
     /**
      * Remove the specified resource from storage.
@@ -90,5 +106,11 @@ class ArticlesController extends Controller
     public function destroy(Articles $articles)
     {
         //
+    }
+
+    public function cetak_pdf(){
+        $articles = Articles::all();
+        $pdf = PDF::loadview('articles.articles_pdf', ['articles'=>$articles]);
+        return $pdf->stream();
     }
 }
