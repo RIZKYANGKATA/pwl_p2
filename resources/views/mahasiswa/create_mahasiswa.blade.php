@@ -31,7 +31,7 @@
               <!-- Profile Image -->
               <div class="card card-primary card-outline">
                 <div class="card-body">
-                  <form method="POST" action="{{ $url_form }}">
+                  <form enctype="multipart/form-data" method="POST" action="{{ $url_form }}">
                     @csrf
                     {!! (isset($mhs))? method_field('PUT') : '' !!}
 
@@ -47,6 +47,13 @@
                       <label>Nama</label>
                       <input class="form-control @error('nama') is-invalid @enderror" value="{{ isset($mhs)? $mhs->nama : old('nama') }}" name="nama" type="text"/>
                       @error('nama')
+                        <span class="error invalid-feedback">{{ $message }} </span>
+                      @enderror
+                    </div>
+                    <div class="form-group">
+                      <label>Foto Profil</label>
+                      <input class="form-control @error('foto_profil') is-invalid @enderror" value="{{ isset($mhs)? $mhs->nama : old('foto_profil') }}" name="foto_profil" type="file"/>
+                      @error('foto_profil')
                         <span class="error invalid-feedback">{{ $message }} </span>
                       @enderror
                     </div>

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Mahasiswa;
 use App\Models\Kelas;
 use App\Models\mahasiswa_matakuliah;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MahasiswaController extends Controller
 {
@@ -16,9 +18,8 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $mhs = Mahasiswa::all();
-        return view('mahasiswa.mahasiswa')
-                    ->with('mhs', $mhs);
+        $mhs = Mahasiswa::with('kelas')->get();
+        return view('mahasiswa.mahasiswa', ['mhs' => $mhs]);
     }
 
     /**
@@ -50,13 +51,27 @@ class MahasiswaController extends Controller
             'tanggal_lahir' => 'required|date',
             'alamat' => 'required|string|max:225',
             'hp' => 'required|digits_between:6,15',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048|dimensions:max_width=100,max_height=100',
         ]);
-
-        $data = Mahasiswa::create($request->except(['_token']));
-
+        if ($request->file('foto_profil')){
+            $image_name = $request->file('foto_profil')->store('images', 'public');
+        }
+        
+        Mahasiswa::create([
+            'nim' => $request->nim,
+            'nama' => $request->nama,
+            'kelas_id' => $request->kelas_id,
+            'jk' => $request->jk,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'alamat' => $request->alamat,
+            'hp' => $request->hp,
+            'foto_profil' => $image_name,
+        ]);
+        
         return redirect('mahasiswa')
-            ->with('success', 'Mahasiswa Berhasil Ditambahkan');
-    }
+                ->with('success', 'Mahasiswa Berhasil Ditambahkan');
+        }
 
     /**
      * Display the specified resource.
@@ -126,9 +141,33 @@ class MahasiswaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        Mahasiswa::where('id', '=', $id)->delete();
+{
+    $mahasiswa = Mahasiswa::find($id);
+
+    if (!$mahasiswa) {
         return redirect('mahasiswa')
-            ->with('success', 'Mahasiswa Berhasil Dihapus');
+            ->with('error', 'Mahasiswa tidak ditemukan');
     }
+
+    // Hapus file foto_profil jika ada
+    if ($mahasiswa->foto_profil) {
+        Storage::delete('public/' . $mahasiswa->foto_profil);
+    }
+
+    // Hapus entri terkait di tabel mahasiswa_matakuliah
+    mahasiswa_matakuliah::where('mahasiswa_id', '=', $id)->delete();
+
+    $mahasiswa->delete();
+
+    return redirect('mahasiswa')
+        ->with('success', 'Mahasiswa Berhasil Dihapus');
+}
+
+public function cetak_pdf($id){
+    $mahasiswa = Mahasiswa::where('id',$id)->first();
+    $nilai = mahasiswa_matakuliah::where('mahasiswa_id',$id)->get();
+    $pdf = PDF::loadview('mahasiswa.mahasiswa_pdf', ['nilai'=>$nilai], ['mahasiswa' => $mahasiswa]);
+    return $pdf->stream();
+}
+
 }

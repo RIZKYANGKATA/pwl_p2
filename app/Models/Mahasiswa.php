@@ -17,16 +17,18 @@ class Mahasiswa extends Model
             'tanggal_lahir',
             'alamat',
             'hp',
-            'kelas_id'
+            'kelas_id',
+            'foto_profil'
     ];
 
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class);
+        return $this->belongsTo(Kelas::class, 'kelas_id');
+
     }
 
     public function mahasiswa_matakuliah()
     {
-        return $this->hasMany(mahasiswa_matakuliah::class);
+        return $this->belongsToMany(mahasiswa_matakuliah::class, 'mahasiswa_matakuliah');
     }
 }

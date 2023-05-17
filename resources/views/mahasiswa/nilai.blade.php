@@ -5,6 +5,8 @@
     <div class="row mb-2">
       <div class="col-sm-6">
         <h1>Data Mahasiswa</h1>
+        <a href="{{ url('/mahasiswa/'. $mahasiswa->id.'/nilai/cetak_pdf')}}" class="btn btn-sm btn-warning mr-2">Cetak</a>
+
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
