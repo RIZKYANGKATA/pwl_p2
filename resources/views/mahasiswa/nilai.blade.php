@@ -5,7 +5,6 @@
     <div class="row mb-2">
       <div class="col-sm-6">
         <h1>Data Mahasiswa</h1>
-        <a href="{{ url('/mahasiswa/'. $mahasiswa->id.'/nilai/cetak_pdf')}}" class="btn btn-sm btn-warning mr-2">Cetak</a>
 
       </div>
       <div class="col-sm-6">
@@ -24,7 +23,9 @@
   <!-- Default box -->
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Detail Mahasiswa</h3>
+      <h3 class="card-title">Detail Mahasiswa</h3> <br>
+        <br>
+        <a href="{{ url('/mahasiswa/'. $mahasiswa->id.'/nilai/cetak_pdf')}}" class="btn btn-sm btn-warning mr-2">Cetak</a>
 
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">

@@ -58,7 +58,6 @@
                     @endforeach
                 </tbody>
               </table>
-              <a href="{{url('mahasiswa')}}" class="btn btn-default"><i class="fas fa-arrow-left pr-1"></i>Back</a>
           </div>
 </body>
 </html>
