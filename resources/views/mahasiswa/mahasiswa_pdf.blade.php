@@ -11,12 +11,11 @@
             }
         </style>
         <center>
-            <h5>Laporan Nilai</h4>
+            <h5>JURUSAN TEGNOLOGI INFORMASI-POLITEKNIK NEGERI MALANG </h4>
+              <P><h3>KARTU HASIL STUDI (KHS)</h3></P>
         </center>
         <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Detail Mahasiswa</h3>
-        
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                   <i class="fas fa-minus"></i>
