@@ -23,7 +23,7 @@
   <!-- Default box -->
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Detail Mahasiswa</h3> <br>
+      <h3 class="card-title"><b>Detail Mahasiswa</b></h3> <br>
         <br>
         <a href="{{ url('/mahasiswa/'. $mahasiswa->id.'/nilai/cetak_pdf')}}" class="btn btn-sm btn-warning mr-2">Cetak</a>
 
