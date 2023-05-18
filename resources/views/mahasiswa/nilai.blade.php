@@ -25,7 +25,7 @@
     <div class="card-header">
       <h3 class="card-title"><b>Detail Mahasiswa</b></h3> <br>
         <br>
-        <a href="{{ url('/mahasiswa/'. $mahasiswa->id.'/nilai/cetak_pdf')}}" class="btn btn-sm btn-warning mr-2">Cetak</a>
+        <a href="{{ url('/mahasiswa/'. $mahasiswa->id.'/nilai/cetak_pdf')}}" class="btn btn-sm btn-warning mr-2">Cetak PDF</a>
 
       <div class="card-tools">
         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
