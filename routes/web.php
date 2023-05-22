@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ArticlesController;
 use Illuminate\Support\Facades\Auth;
