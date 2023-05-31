@@ -133,7 +133,7 @@ Route::resource('articles', ArticlesController::class);
 Route::get('/mahasiswa/{id}/nilai/cetak_pdf', [MahasiswaController::class, 'cetak_pdf']);
 Route::resource('/mahasiswa', MahasiswaController::class)->parameter('mahasiwa', 'id');
 Route::get('/mahasiswa/{id}/nilai', [MahasiswaController::class, 'nilai']);
-
+Route::post('/mahasiswa/data', [MahasiswaController::class, 'data']);
 });
 
 // Route::get('/', [DashboardController::class, 'index']);

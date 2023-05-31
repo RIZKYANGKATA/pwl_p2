@@ -8,6 +8,8 @@ use App\Models\mahasiswa_matakuliah;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\DataTables;
 
 class MahasiswaController extends Controller
 {
@@ -18,8 +20,16 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $mhs = Mahasiswa::with('kelas')->get();
-        return view('mahasiswa.mahasiswa', ['mhs' => $mhs]);
+        return view('mahasiswa.mahasiswa');
+    }
+
+    public function data()
+    {
+        $data = Mahasiswa::selectRaw('id, nim, nama, hp');
+
+        return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->make(true);
     }
 
     /**
@@ -43,35 +53,30 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $rule = [
             'nim' => 'required|string|max:10|unique:mahasiswa,nim',
             'nama' => 'required|string|max:50',
-            'jk' => 'required|in:l,p',
-            'tempat_lahir' => 'required|string|max:50',
-            'tanggal_lahir' => 'required|date',
-            'alamat' => 'required|string|max:225',
             'hp' => 'required|digits_between:6,15',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048|dimensions:max_width=100,max_height=100',
-        ]);
-        if ($request->file('foto_profil')){
-            $image_name = $request->file('foto_profil')->store('images', 'public');
+        ];
+
+        $validator = Validator::make($request->all(), $rule);
+        if($validator->fails()){
+            return response()->json([
+                'status' => false,
+                'modal_close' => false,
+                'message' => 'Data gagal ditambahkan. ' .$validator->errors()->first(),
+                'data' => $validator->errors()
+            ]);
         }
-        
-        Mahasiswa::create([
-            'nim' => $request->nim,
-            'nama' => $request->nama,
-            'kelas_id' => $request->kelas_id,
-            'jk' => $request->jk,
-            'tempat_lahir' => $request->tempat_lahir,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'alamat' => $request->alamat,
-            'hp' => $request->hp,
-            'foto_profil' => $image_name,
+
+        $mhs = Mahasiswa::create($request->all());
+        return response()->json([
+            'status' => ($mhs),
+            'modal_close' => false,
+            'message' => ($mhs)? 'Data berhasil ditambahkan' : 'Data gagal ditambahkan',
+            'data' => null
         ]);
-        
-        return redirect('mahasiswa')
-                ->with('success', 'Mahasiswa Berhasil Ditambahkan');
-        }
+    }
 
     /**
      * Display the specified resource.
@@ -119,19 +124,30 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $rule = [
             'nim' => 'required|string|max:10|unique:mahasiswa,nim,'.$id,
             'nama' => 'required|string|max:50',
-            'jk' => 'required|in:l,p',
-            'tempat_lahir' => 'required|string|max:50',
-            'tanggal_lahir' => 'required|date',
-            'alamat' => 'required|string|max:225',
             'hp' => 'required|digits_between:6,15',
-        ]);
+        ];
 
-        $data = Mahasiswa::where('id', '=', $id)->update($request->except(['_token', '_method']));
-        return redirect('mahasiswa')
-            ->with('success', 'Mahasiswa Berhasil Ditambahkan');
+        $validator = Validator::make($request->all(), $rule);
+        if($validator->fails()){
+            return response()->json([
+                'status' => false,
+                'modal_close' => false,
+                'message' => 'Data gagal diedit. ' .$validator->errors()->first(),
+                'data' => $validator->errors()
+            ]);
+        }
+
+        $mhs = Mahasiswa::where('id', $id)->update($request->except('_token', '_method'));
+
+        return response()->json([
+            'status' => ($mhs),
+            'modal_close' => $mhs,
+            'message' => ($mhs)? 'Data berhasil diedit' : 'Data gagal diedit',
+            'data' => null
+        ]);
     }
 
     /**
