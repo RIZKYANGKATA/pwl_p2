@@ -136,7 +136,7 @@
         });
     }
     function deleteData(element) {
-        if (!confirm("Are you sure?")) {
+        if (!confirm("Anda Yakin Ingin Menghapus Data Ini?")) {
             return false;
         }
         // console.log("Melakukan anu");
